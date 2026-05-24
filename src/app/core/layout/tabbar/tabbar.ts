@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { afterNextRender, Component, effect, ElementRef, signal, viewChild } from '@angular/core';
 
 interface TabItem {
   id: string;
@@ -31,6 +31,23 @@ export class Tabbar {
 
   protected readonly activeTabId = signal<string>('experience');
 
+  // Custom scroll indicator state
+  protected readonly thumbLeft = signal(0);
+  protected readonly thumbWidth = signal(100);
+  protected readonly hasOverflow = signal(false);
+
+  private readonly scrollRef = viewChild<ElementRef<HTMLElement>>('scrollContainer');
+
+  constructor() {
+    afterNextRender(() => this.recalculate());
+
+    // Recalculate when tabs change
+    effect(() => {
+      this.tabs();
+      requestAnimationFrame(() => this.recalculate());
+    });
+  }
+
   protected selectTab(id: string): void {
     this.activeTabId.set(id);
   }
@@ -40,5 +57,25 @@ export class Tabbar {
       event.preventDefault();
       container.scrollLeft += event.deltaY;
     }
+  }
+
+  protected onScrollUpdate(container: HTMLElement): void {
+    this.updateThumb(container);
+  }
+
+  private recalculate(): void {
+    const el = this.scrollRef()?.nativeElement;
+    if (el) this.updateThumb(el);
+  }
+
+  private updateThumb(el: HTMLElement): void {
+    const { scrollLeft, scrollWidth, clientWidth } = el;
+    const overflow = scrollWidth > clientWidth;
+    this.hasOverflow.set(overflow);
+
+    if (!overflow) return;
+
+    this.thumbWidth.set((clientWidth / scrollWidth) * 100);
+    this.thumbLeft.set((scrollLeft / scrollWidth) * 100);
   }
 }

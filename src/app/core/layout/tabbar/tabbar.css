@@ -1,3 +1,63 @@
-.scrollbar::-webkit-scrollbar {
-  height: 8px;
+:host {
+  display: block;
+  height: 100%;
+  width: 100%;
+  min-width: 0;
+}
+
+.tab-wrapper {
+  position: relative;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  min-width: 0;
+
+}
+
+/* Hide native scrollbar completely — scroll via wheel handler */
+.tab-scroll-area {
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+  width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none; /* Firefox */
+}
+
+.tab-scroll-area::-webkit-scrollbar {
+  display: none; /* Chrome, Edge, Safari */
+}
+
+/* Custom scroll indicator track — overlays at the bottom */
+.scroll-track {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.tab-wrapper:hover .scroll-track {
+  opacity: 1;
+}
+
+.scroll-thumb {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 2px;
+  min-width: 20px;
+  transition: background 0.15s ease;
+}
+
+.tab-wrapper:hover .scroll-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+  pointer-events: auto;
 }

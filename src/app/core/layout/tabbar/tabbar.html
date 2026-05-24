@@ -1,8 +1,9 @@
-<div class="flex h-full w-full min-w-0 border-b border-border">
+<div class="tab-wrapper">
   <div
     #scrollContainer
     (wheel)="onScroll($event, scrollContainer)"
-    class="flex h-full w-full overflow-x-auto items-stretch scrollbar"
+    (scroll)="onScrollUpdate(scrollContainer)"
+    class="tab-scroll-area"
   >
     @for (tab of tabs(); track tab.id) {
       <div
@@ -11,7 +12,7 @@
         [class]="
           tab.id === activeTabId()
             ? 'border-t-2 border-t-accent-purple border-b border-b-editor bg-tab-active text-text-main'
-            : 'border-t border-t-transparent bg-tab-inactive text-text-muted hover:bg-surface hover:text-text-main transition-colors'
+            : 'border-t border-t-transparent border-b border-border bg-tab-inactive text-text-muted hover:bg-surface hover:text-text-main transition-colors'
         "
       >
         <span [class]="tab.iconColor">{{ tab.iconText }}</span>
@@ -19,4 +20,14 @@
       </div>
     }
   </div>
+
+  @if (hasOverflow()) {
+    <div class="scroll-track">
+      <div
+        class="scroll-thumb"
+        [style.left.%]="thumbLeft()"
+        [style.width.%]="thumbWidth()"
+      ></div>
+    </div>
+  }
 </div>
