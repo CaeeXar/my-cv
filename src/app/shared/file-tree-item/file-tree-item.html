@@ -4,7 +4,7 @@
     routerLinkActive="bg-primary font-bold"
     [routerLinkActiveOptions]="{ exact: true }"
     class="flex h-9 w-full items-center gap-2 text-sm text-text hover:bg-primary-hover"
-    [style.padding-left.rem]="depth() * 1"
+    [style.padding-left.rem]="(depth() + 1) * 1"
   >
     <ng-icon [name]="node().icon" size="18" />
 
@@ -20,7 +20,7 @@
       type="button"
       (click)="toggle()"
       class="flex h-9 w-full items-center text-text hover:bg-primary-hover"
-      [style.padding-left.rem]="depth() * 1"
+      [style.padding-left.rem]="(depth() + 1) * 1"
     >
       @if (expanded()) {
         <ng-icon name="bootstrapChevronDown" size="20" class="mr-2" />

@@ -1,15 +1,30 @@
-<div class="flex h-screen bg-background text-text">
-  <app-sidebar />
+<div class="flex h-screen flex-col bg-background text-text">
+  <!-- TOPBAR -->
+  <header class="flex h-10 items-center border-b border-border bg-tab px-4">
+    <nav class="flex items-center gap-4 text-sm text-text-muted">
+      <button class="hover:text-text">File</button>
+      <button class="hover:text-text">Edit</button>
+      <button class="hover:text-text">View</button>
+      <button class="hover:text-text">Help</button>
+    </nav>
+  </header>
 
-  <div class="flex flex-1 min-w-0 flex-col">
-    <div class="flex h-10 items-center border-b border-border px-4 bg-tab">
-      <span class="text-sm font-medium text-text-muted">TAB BAR</span>
-    </div>
+  <!-- WORKSPACE -->
+  <div class="flex flex-1 min-h-0">
+    <app-sidebar />
 
-    <main class="flex-1 overflow-auto bg-editor">
-      <div class="p-4">
-        <router-outlet />
+    <div class="flex flex-1 min-w-0 flex-col">
+      <!-- TABBAR -->
+      <div class="flex h-10 items-center border-b border-border bg-tab px-4">
+        <span class="text-sm font-medium text-text-muted">TODO: Active tabs...</span>
       </div>
-    </main>
+
+      <!-- CONTENT -->
+      <main class="flex-1 overflow-auto bg-editor">
+        <div class="p-4">
+          <router-outlet />
+        </div>
+      </main>
+    </div>
   </div>
 </div>
