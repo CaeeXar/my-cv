@@ -1,0 +1,13 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+/* Scroll padding fix  */
+.flex::-webkit-scrollbar {
+  height: 8px;
+}
+
+.flex {
+  scrollbar-gutter: stable;
+}

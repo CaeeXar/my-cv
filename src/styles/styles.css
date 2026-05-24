@@ -1,2 +1,8 @@
 @import 'tailwindcss';
 @import './variables.css';
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
