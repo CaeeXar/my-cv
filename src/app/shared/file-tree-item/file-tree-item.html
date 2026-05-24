@@ -1,0 +1,44 @@
+@if (node().type === 'file') {
+  <a
+    [routerLink]="node().route"
+    routerLinkActive="bg-primary font-bold"
+    [routerLinkActiveOptions]="{ exact: true }"
+    class="flex h-9 w-full items-center gap-2 text-sm text-text hover:bg-primary-hover"
+    [style.padding-left.rem]="depth() * 1"
+  >
+    <ng-icon [name]="node().icon" size="18" />
+
+    <span class="truncate">
+      {{ node().label }}
+    </span>
+  </a>
+}
+
+@if (node().type === 'folder') {
+  <div>
+    <button
+      type="button"
+      (click)="toggle()"
+      class="flex h-9 w-full items-center text-text hover:bg-primary-hover"
+      [style.padding-left.rem]="depth() * 1"
+    >
+      @if (expanded()) {
+        <ng-icon name="bootstrapChevronDown" size="20" class="mr-2" />
+      } @else {
+        <ng-icon name="bootstrapChevronRight" size="20" class="mr-2" />
+      }
+
+      <span class="truncate font-medium">
+        {{ node().label }}
+      </span>
+    </button>
+
+    @if (expanded()) {
+      <div>
+        @for (child of node().children; track child.id) {
+          <app-file-tree-item [node]="child" [depth]="depth() + 1" />
+        }
+      </div>
+    }
+  </div>
+}

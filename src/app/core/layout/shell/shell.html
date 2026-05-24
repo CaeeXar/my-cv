@@ -1,7 +1,15 @@
-<div class="flex">
+<div class="flex h-screen bg-background text-text">
   <app-sidebar />
 
-  <main>
-    <router-outlet></router-outlet>
-  </main>
+  <div class="flex flex-1 min-w-0 flex-col">
+    <div class="flex h-10 items-center border-b border-border px-4 bg-tab">
+      <span class="text-sm font-medium text-text-muted">TAB BAR</span>
+    </div>
+
+    <main class="flex-1 overflow-auto bg-editor">
+      <div class="p-4">
+        <router-outlet />
+      </div>
+    </main>
+  </div>
 </div>

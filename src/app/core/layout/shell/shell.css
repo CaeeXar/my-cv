@@ -1,0 +1,7 @@
+.shell {
+  display: flex;
+}
+
+.shell-content {
+  flex: 1;
+}

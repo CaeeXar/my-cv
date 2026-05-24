@@ -1,6 +1,11 @@
-<nav class="bg-mint-500">
-  <ul>
-    <li><a routerLink="/readme" routerLinkActive="active">Readme</a></li>
-    <li><a routerLink="/experience">Experience</a></li>
-  </ul>
-</nav>
+<aside class="flex h-full w-72 flex-col border-r border-border bg-sidebar">
+  <div class="flex h-10 items-center border-b border-border px-4">
+    <span class="text-sm font-medium text-text-muted">Explorer</span>
+  </div>
+
+  <nav class="flex-1 overflow-auto">
+    @for (node of fileTree; track node.id) {
+      <app-file-tree-item [node]="node" />
+    }
+  </nav>
+</aside>

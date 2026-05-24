@@ -1,4 +1,69 @@
+@import 'tailwindcss';
+
 @theme {
-  --color-bg: #0b1020;
-  --radius-panel: 16px;
+  /* =========================
+     LAYOUT BACKGROUNDS
+  ========================= */
+
+  --color-background: #282a36;
+  --color-editor: #282a36;
+
+  --color-sidebar: #232530;
+  --color-activitybar: #1d1f28;
+
+  /* =========================
+     TABS
+  ========================= */
+
+  --color-tab: #232530;
+  --color-tab-active: #282a36;
+  --color-tab-inactive: #232530;
+
+  /* =========================
+     SURFACES
+  ========================= */
+
+  --color-surface: #2f3242;
+  --color-surface-hover: #3a3e52;
+
+  /* =========================
+     TEXT
+  ========================= */
+
+  --color-text: #f8f8f2;
+  --color-text-muted: #6272a4;
+
+  /* =========================
+     ACCENT (Bearded Purple)
+  ========================= */
+
+  --color-primary: #bd93f9;
+  --color-primary-hover: #c6a4ff;
+
+  /* =========================
+     STATES
+  ========================= */
+
+  --color-success: #50fa7b;
+  --color-warning: #f1fa8c;
+  --color-danger: #ff5555;
+
+  /* =========================
+     BORDER
+  ========================= */
+
+  --color-border: #44475a;
+
+  /* =========================
+     RADIUS
+  ========================= */
+
+  --radius-panel: 12px;
+  --radius-tab: 8px;
+
+  /* =========================
+     FONT
+  ========================= */
+
+  --font-mono: 'JetBrains Mono', monospace;
 }
