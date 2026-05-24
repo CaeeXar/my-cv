@@ -14,7 +14,6 @@ interface TabItem {
   styleUrl: './tabbar.css',
 })
 export class Tabbar {
-  // Interner State für alle aktuell "geöffneten" Dateien im Editor
   protected readonly tabs = signal<TabItem[]>([
     { id: 'experience', label: 'experience.ts', iconText: 'ts', iconColor: 'text-accent-pink' },
     { id: 'readme', label: 'README.md', iconText: 'md', iconColor: 'text-accent-cyan' },
@@ -30,11 +29,16 @@ export class Tabbar {
     { id: '9', label: 'skills.json', iconText: 'json', iconColor: 'text-accent-orange' },
   ]);
 
-  // Hält die ID des aktuell ausgewählten Tabs
   protected readonly activeTabId = signal<string>('experience');
 
-  // Methode zum Wechseln des aktiven Tabs bei Klick
   protected selectTab(id: string): void {
     this.activeTabId.set(id);
+  }
+
+  protected onScroll(event: WheelEvent, container: HTMLElement): void {
+    if (event.deltaY !== 0) {
+      event.preventDefault();
+      container.scrollLeft += event.deltaY;
+    }
   }
 }

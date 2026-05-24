@@ -1,6 +1,9 @@
-<div class="flex h-full w-full min-w-0 overflow-hidden">
-  <!-- SCROLL AREA -->
-  <div class="flex h-full flex-1 min-w-0 overflow-x-auto overflow-y-hidden">
+<div class="flex h-full w-full min-w-0 border-b border-border">
+  <div
+    #scrollContainer
+    (wheel)="onScroll($event, scrollContainer)"
+    class="flex h-full w-full overflow-x-auto items-stretch scrollbar"
+  >
     @for (tab of tabs(); track tab.id) {
       <div
         (click)="selectTab(tab.id)"
@@ -8,11 +11,11 @@
         [class]="
           tab.id === activeTabId()
             ? 'border-t-2 border-t-accent-purple border-b border-b-editor bg-tab-active text-text-main'
-            : 'border-t border-t-border bg-tab-inactive text-text-muted hover:bg-surface hover:text-text-main transition-colors'
+            : 'border-t border-t-transparent bg-tab-inactive text-text-muted hover:bg-surface hover:text-text-main transition-colors'
         "
       >
         <span [class]="tab.iconColor">{{ tab.iconText }}</span>
-        <span class="truncate leading-none">{{ tab.label }}</span>
+        <span>{{ tab.label }}</span>
       </div>
     }
   </div>
