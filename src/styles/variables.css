@@ -2,68 +2,93 @@
 
 @theme {
   /* =========================
-     LAYOUT BACKGROUNDS
+     LAYOUT BACKGROUNDS (Räumliche Tiefe)
   ========================= */
+  /* Die Activitybar (ganz links mit den Icons) sollte am dunkelsten sein */
+  --color-activitybar: #181a20;
 
-  --color-background: #282a36;
+  /* Die Sidebar (File Tree) ist leicht heller */
+  --color-sidebar: #232530;
+
+  /* Der Main-Editor ist noch etwas heller, um in den Fokus zu rücken */
   --color-editor: #282a36;
 
-  --color-sidebar: #232530;
-  --color-activitybar: #1d1f28;
+  /* Für ein eventuelles Terminal oder Output-Panel unten */
+  --color-panel: #1e2029;
 
   /* =========================
      TABS
   ========================= */
-
-  --color-tab: #232530;
-  --color-tab-active: #282a36;
-  --color-tab-inactive: #232530;
+  --color-tab-active: #282a36; /* Gleiche Farbe wie Editor = Verschmelzung */
+  --color-tab-inactive: #232530; /* Gleiche Farbe wie Sidebar */
+  --color-tab-border: #181a20;
 
   /* =========================
-     SURFACES
+     SURFACES & HOVER 
   ========================= */
-
   --color-surface: #2f3242;
   --color-surface-hover: #3a3e52;
+  --color-list-active: #44475a60;
 
   /* =========================
-     TEXT
+     TYPOGRAPHY
   ========================= */
-
-  --color-text: #f8f8f2;
+  --color-text-main: #f8f8f2;
   --color-text-muted: #6272a4;
 
   /* =========================
-     ACCENT (Bearded Purple)
+     SYNTAX ACCENTS 
   ========================= */
+  /* Brand-Color */
+  --color-accent-purple: #9489ec;
+  --color-accent-purple-hover: #9489ec50;
 
-  --color-primary: #bd93f9;
-  --color-primary-hover: #c6a4ff;
+  /* Code-Highlighting */
+  --color-accent-pink: #ff79c6; /* Functions, Methods, HTML-Tags */
+  --color-accent-cyan: #8be9fd; /* C#/TypeScript Keywords, Types */
+  --color-accent-orange: #ffb86c; /* Number, Parameter, JSON-Keys */
+  --color-accent-yellow: #f1fa8c; /* Strings (Texte) */
+  --color-accent-green: #50fa7b;
+  --color-accent-red: #ff5555;
 
   /* =========================
-     STATES
+     BORDERS
   ========================= */
-
-  --color-success: #50fa7b;
-  --color-warning: #f1fa8c;
-  --color-danger: #ff5555;
-
-  /* =========================
-     BORDER
-  ========================= */
-
   --color-border: #44475a;
+  --color-border-light: #6272a450;
 
   /* =========================
-     RADIUS
+     RADII
   ========================= */
-
   --radius-panel: 12px;
   --radius-tab: 8px;
 
   /* =========================
-     FONT
+     FONTS
   ========================= */
+  --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+}
 
-  --font-mono: 'JetBrains Mono', monospace;
+/* =========================
+   BASE STYLES & SCROLLBARS
+========================= */
+@layer base {
+  body {
+    @apply bg-editor text-text-main font-mono antialiased overflow-hidden h-screen w-screen;
+  }
+
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border border-[3px] border-solid border-editor rounded-full hover:bg-text-muted;
+  }
+
+  aside ::-webkit-scrollbar-thumb {
+    @apply border-sidebar;
+  }
 }

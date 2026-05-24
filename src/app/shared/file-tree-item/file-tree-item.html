@@ -1,12 +1,16 @@
 @if (node().type === 'file') {
   <a
     [routerLink]="node().route"
-    routerLinkActive="bg-primary font-bold"
+    routerLinkActive="bg-list-active !text-text-main"
     [routerLinkActiveOptions]="{ exact: true }"
-    class="flex h-9 w-full items-center gap-2 text-sm text-text hover:bg-primary-hover"
-    [style.padding-left.rem]="(depth() + 1) * 1"
+    class="flex h-8 w-full items-center gap-2 text-sm text-text-muted hover:bg-surface-hover hover:text-text-main transition-colors border-l-2 border-transparent [&.bg-list-active]:border-accent-purple"
+    [style.padding-left.rem]="(depth() + 1) * 0.75"
   >
-    <ng-icon [name]="node().icon" size="18" />
+    <ng-icon
+      [name]="node().icon || 'bootstrapFileEarmarkCode'"
+      size="16"
+      class="text-accent-purple"
+    />
 
     <span class="truncate">
       {{ node().label }}
@@ -19,16 +23,16 @@
     <button
       type="button"
       (click)="toggle()"
-      class="flex h-9 w-full items-center text-text hover:bg-primary-hover"
-      [style.padding-left.rem]="(depth() + 1) * 1"
+      class="flex h-8 w-full items-center gap-1 text-sm text-text-main hover:bg-surface-hover transition-colors border-l-2 border-transparent"
+      [style.padding-left.rem]="(depth() + 1) * 0.75"
     >
       @if (expanded()) {
-        <ng-icon name="bootstrapChevronDown" size="20" class="mr-2" />
+        <ng-icon name="bootstrapChevronDown" size="16" class="text-text-muted" />
       } @else {
-        <ng-icon name="bootstrapChevronRight" size="20" class="mr-2" />
+        <ng-icon name="bootstrapChevronRight" size="16" class="text-text-muted" />
       }
 
-      <span class="truncate font-medium">
+      <span class="truncate font-semibold tracking-wide">
         {{ node().label }}
       </span>
     </button>

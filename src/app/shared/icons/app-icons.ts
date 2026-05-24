@@ -5,6 +5,7 @@ import {
   bootstrapChevronRight,
   bootstrapTypescript,
   bootstrapFiletypeJson,
+  bootstrapFileEarmarkCode,
 } from '@ng-icons/bootstrap-icons';
 
 export const APP_ICONS = {
@@ -14,4 +15,5 @@ export const APP_ICONS = {
   bootstrapChevronRight,
   bootstrapTypescript,
   bootstrapFiletypeJson,
+  bootstrapFileEarmarkCode,
 };
