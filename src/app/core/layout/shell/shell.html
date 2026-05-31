@@ -1,18 +1,58 @@
-<div class="flex h-screen flex-col bg-editor text-text-main font-mono">
-  <div class="flex h-10 items-center border-b border-border bg-sidebar px-4">
-    <app-menubar />
-  </div>
+<div class="flex h-dvh min-w-0 flex-col overflow-hidden bg-editor font-mono text-text-main">
+  <header class="z-30 flex h-12 shrink-0 items-center justify-between border-b border-border bg-panel px-3 sm:px-4 md:h-11">
+    <div class="flex min-w-0 items-center gap-3">
+      <button
+        type="button"
+        class="flex size-9 shrink-0 flex-col items-center justify-center gap-1 rounded border border-border bg-sidebar text-text-main transition-colors hover:bg-surface-hover md:hidden"
+        aria-label="Open navigation"
+        (click)="openMobileSidebar()"
+      >
+        <span class="h-0.5 w-4 rounded bg-current"></span>
+        <span class="h-0.5 w-4 rounded bg-current"></span>
+        <span class="h-0.5 w-4 rounded bg-current"></span>
+      </button>
 
-  <div class="flex flex-1 min-h-0">
-    <app-sidebar />
+      <a routerLink="/readme" class="min-w-0 text-sm font-semibold tracking-wide text-text-main sm:text-base">
+        <span class="text-accent-purple">samuel</span><span class="text-text-muted">.portfolio</span>
+      </a>
+    </div>
 
-    <div class="flex flex-1 min-w-0 flex-col">
-      <div class="h-10 w-full min-w-0 bg-tab-inactive">
+    <div class="hidden items-center gap-2 text-xs text-text-muted sm:flex">
+      <span class="rounded border border-border bg-sidebar px-2 py-1">Web-Native IDE</span>
+    </div>
+  </header>
+
+  <div class="relative flex min-h-0 flex-1 overflow-hidden">
+    <app-sidebar class="hidden shrink-0 md:block" />
+
+    <button
+      type="button"
+      class="fixed inset-0 z-40 bg-black/55 backdrop-blur-[1px] transition-opacity duration-200 md:hidden"
+      [class.opacity-100]="isMobileSidebarOpen"
+      [class.opacity-0]="!isMobileSidebarOpen"
+      [class.pointer-events-auto]="isMobileSidebarOpen"
+      [class.pointer-events-none]="!isMobileSidebarOpen"
+      aria-label="Close navigation"
+      (click)="closeMobileSidebar()"
+    ></button>
+
+    <div
+      class="fixed inset-y-0 left-0 z-50 w-[min(82vw,20rem)] transform transition-transform duration-200 ease-out md:hidden"
+      [ngClass]="{
+        'translate-x-0': isMobileSidebarOpen,
+        '-translate-x-full': !isMobileSidebarOpen
+      }"
+    >
+      <app-sidebar (fileSelected)="handleSidebarSelect()" />
+    </div>
+
+    <div class="flex min-w-0 flex-1 flex-col">
+      <div class="h-11 w-full min-w-0 shrink-0 bg-tab-inactive md:h-10">
         <app-tabbar />
       </div>
 
-      <main class="flex-1 overflow-auto bg-editor">
-        <div class="p-6">
+      <main class="min-w-0 flex-1 overflow-y-auto overflow-x-hidden bg-editor">
+        <div class="mx-auto w-full max-w-5xl px-4 py-5 sm:px-6 md:px-8 md:py-8">
           <router-outlet />
         </div>
       </main>

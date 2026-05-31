@@ -1,11 +1,12 @@
-<aside class="flex h-full w-64 flex-col border-r border-border bg-sidebar pt-2">
-  <div class="flex h-8 items-center px-4 mb-2">
+<aside class="flex h-full w-full flex-col border-r border-border bg-sidebar pt-3 shadow-2xl shadow-black/30 md:w-64 md:pt-2 md:shadow-none">
+  <div class="mb-2 flex h-8 items-center justify-between px-4">
     <span class="text-xs font-semibold uppercase tracking-widest text-text-muted">Explorer</span>
+    <span class="text-[11px] text-text-muted md:hidden">portfolio</span>
   </div>
 
   <nav class="flex-1 overflow-y-auto overflow-x-hidden pb-4">
     @for (node of fileTree; track node.id) {
-      <app-file-tree-item [node]="node" />
+      <app-file-tree-item [node]="node" (fileSelected)="handleFileSelected()" />
     }
   </nav>
 </aside>

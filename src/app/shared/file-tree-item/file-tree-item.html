@@ -3,7 +3,8 @@
     [routerLink]="node().route"
     routerLinkActive="bg-list-active !text-text-main"
     [routerLinkActiveOptions]="{ exact: true }"
-    class="flex h-8 w-full items-center gap-2 text-sm text-text-muted hover:bg-surface-hover hover:text-text-main transition-colors border-l-2 border-transparent [&.bg-list-active]:border-accent-purple"
+    (click)="selectFile()"
+    class="flex h-10 w-full items-center gap-2 border-l-2 border-transparent text-sm text-text-muted transition-colors hover:bg-surface-hover hover:text-text-main md:h-8 [&.bg-list-active]:border-accent-purple"
     [style.padding-left.rem]="(depth() + 1) * 0.75"
   >
     <ng-icon
@@ -40,7 +41,11 @@
     @if (expanded()) {
       <div>
         @for (child of node().children; track child.id) {
-          <app-file-tree-item [node]="child" [depth]="depth() + 1" />
+          <app-file-tree-item
+            [node]="child"
+            [depth]="depth() + 1"
+            (fileSelected)="fileSelected.emit()"
+          />
         }
       </div>
     }

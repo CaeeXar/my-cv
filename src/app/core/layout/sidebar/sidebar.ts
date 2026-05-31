@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, output } from '@angular/core';
 import { FILE_TREE } from '../../config/navigation.config';
 import { FileTreeItem } from '../../../shared/file-tree-item/file-tree-item';
 
@@ -10,4 +10,9 @@ import { FileTreeItem } from '../../../shared/file-tree-item/file-tree-item';
 })
 export class Sidebar {
   protected readonly fileTree = FILE_TREE;
+  public readonly fileSelected = output<void>();
+
+  protected handleFileSelected(): void {
+    this.fileSelected.emit();
+  }
 }

@@ -8,15 +8,15 @@
     @for (tab of tabs(); track tab.id) {
       <div
         (click)="selectTab(tab.id)"
-        class="flex h-full shrink-0 items-center gap-2 border-r border-border px-4 text-sm cursor-pointer whitespace-nowrap box-border"
+        class="box-border flex h-full shrink-0 cursor-pointer items-center gap-2 whitespace-nowrap border-r border-border px-3 text-xs sm:px-4 sm:text-sm"
         [class]="
           tab.id === activeTabId()
-            ? 'border-t-2 border-t-accent-purple border-b border-b-editor bg-tab-active text-text-main'
-            : 'border-t border-t-transparent border-b border-border bg-tab-inactive text-text-muted hover:bg-surface hover:text-text-main transition-colors'
+            ? 'border-t-2 border-t-accent-purple border-b border-b-editor bg-tab-active text-text-main shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]'
+            : 'border-t border-t-transparent border-b border-border bg-tab-inactive text-text-muted transition-colors hover:bg-surface hover:text-text-main'
         "
       >
-        <span [class]="tab.iconColor">{{ tab.iconText }}</span>
-        <span>{{ tab.label }}</span>
+        <span class="text-[11px] font-semibold uppercase" [class]="tab.iconColor">{{ tab.iconText }}</span>
+        <span class="max-w-32 truncate sm:max-w-none">{{ tab.label }}</span>
       </div>
     }
   </div>
